@@ -143,8 +143,10 @@ train_dataset = datasets.ImageFolder(args.train_dir,
 # `num_replicas=hvd.size()` and `rank=hvd.rank()`.
 # train_sampler = torch.utils.data.distributed.DistributedSampler(
 #     train_dataset, num_replicas=hvd.size(), rank=hvd.rank())
+# train_loader = torch.utils.data.DataLoader(
+#     train_dataset, batch_size=args.batch_size, sampler=train_sampler, **kwargs)
 train_loader = torch.utils.data.DataLoader(
-    train_dataset, batch_size=args.batch_size, sampler=train_sampler, **kwargs)
+    train_dataset, batch_size=args.batch_size, **kwargs)
 
 val_dataset = datasets.ImageFolder(args.val_dir,
                          transform=transforms.Compose([
@@ -155,8 +157,10 @@ val_dataset = datasets.ImageFolder(args.val_dir,
                          ]))
 # val_sampler = torch.utils.data.distributed.DistributedSampler(
 #     val_dataset, num_replicas=hvd.size(), rank=hvd.rank())
+# val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=args.val_batch_size,
+#                                          sampler=val_sampler, **kwargs)
 val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=args.val_batch_size,
-                                         sampler=val_sampler, **kwargs)
+                                         **kwargs)
 
 
 # Set up standard ResNet-50 model.
