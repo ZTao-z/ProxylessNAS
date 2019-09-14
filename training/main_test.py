@@ -204,7 +204,7 @@ else:
 
 def train(epoch):
     model.train()
-    train_sampler.set_epoch(epoch)
+    # train_sampler.set_epoch(epoch)
     train_loss = Metric('train_loss')
     train_accuracy = Metric('train_accuracy')
 
