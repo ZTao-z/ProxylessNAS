@@ -120,7 +120,7 @@ for try_epoch in range(args.epochs, 0, -1):
 verbose = 0 # 1 if hvd.rank() == 0 else 0
 
 # Horovod: write TensorBoard logs on first worker.
-log_writer = None # tensorboardX.SummaryWriter(args.log_dir) if hvd.rank() == 0 else None
+log_writer = tensorboardX.SummaryWriter(args.log_dir) # if hvd.rank() == 0 else None
 best_val_acc = 0.0
 
 kwargs = {'num_workers': 5, 'pin_memory': True} if args.cuda else {}
